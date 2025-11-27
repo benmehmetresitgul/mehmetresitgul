@@ -1,12 +1,12 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import WeatherWidget from './components/WeatherWidget';
 import History from './components/History';
 import Timeline from './components/Timeline';
 import Gallery from './components/Gallery';
 import Location from './components/Location';
 import Footer from './components/Footer';
-import Weather from './components/Weather';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <Weather />
+      <WeatherWidget />
       <History />
       <Timeline />
       <Gallery />
