@@ -34,7 +34,7 @@ const Weather = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_KEY = '755623e152e47efe86bfd4e85d8f9856';
+  const API_KEY = 'b0cc8da264441e1c2b30846bd4126de4';
   const LAT = 40.08;
   const LON = 39.38;
 
