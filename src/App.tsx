@@ -1,7 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import WeatherWidget from './components/WeatherWidget';
 import History from './components/History';
 import Timeline from './components/Timeline';
 import Gallery from './components/Gallery';
@@ -14,7 +13,6 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <WeatherWidget />
       <History />
       <Timeline />
       <Gallery />
