@@ -45,24 +45,33 @@ const Weather = () => {
   const fetchWeather = async () => {
     try {
       setLoading(true);
-      
+
       const currentResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric&lang=tr`
       );
       const currentData = await currentResponse.json();
-      
+
+      if (!currentResponse.ok) {
+        throw new Error(`Weather API error: ${currentData.message}`);
+      }
+
       const forecastResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric&lang=tr`
       );
       const forecastData = await forecastResponse.json();
-      
+
+      if (!forecastResponse.ok) {
+        throw new Error(`Forecast API error: ${forecastData.message}`);
+      }
+
       setWeather(currentData);
-      
+
       const dailyForecast = forecastData.list.filter((_: any, index: number) => index % 8 === 0).slice(0, 5);
       setForecast(dailyForecast);
-      
+
       setLoading(false);
     } catch (err) {
+      console.error('Weather fetch error:', err);
       setError('Hava durumu yüklenemedi');
       setLoading(false);
     }
@@ -105,7 +114,19 @@ const Weather = () => {
   }
 
   if (error || !weather) {
-    return null;
+    return (
+      <section className="py-20 bg-gradient-to-br from-stone-50 to-stone-100">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-stone-800 mb-4">
+              Hava Durumu
+            </h2>
+            <div className="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
+            <p className="text-stone-600 text-lg">Hava durumu verisi yüklenemedi.</p>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
